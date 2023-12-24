@@ -1,9 +1,9 @@
 from django.contrib.auth import get_user_model
+User = get_user_model()
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import permissions
 
-User = get_user_model()
 
 class SignupView(APIView):
     """alllows for creation of a new user"""
@@ -20,11 +20,13 @@ class SignupView(APIView):
 
         if password != password2:
             return Response({'error': 'Passwords must be similar!'})
+        elif User.objects.filter(email=email):
+            return Response({'error': 'A user with that email exists'})
         else:
             if len(password) < 7:
-                return Response({'error': 'Password must at least be characters long'})
+                return Response({'error': 'Password must at least be 6 characters long'})
             else:
-                user = User.create_user(email=email, name=name, password=password)
+                user = User.objects.create_user(email=email, name=name, password=password)
 
                 user.save()
                 
