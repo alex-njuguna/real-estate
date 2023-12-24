@@ -5,7 +5,7 @@ from rest_framework import permissions
 
 User = get_user_model()
 
-class SignUp(APIView):
+class SignupView(APIView):
     """alllows for creation of a new user"""
     permission_classes = (permissions.AllowAny,)
 
