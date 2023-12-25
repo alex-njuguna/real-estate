@@ -21,6 +21,6 @@ class TopSellerView(ListAPIView):
     """display the top sellers"""
     permission_classes = (permissions.AllowAny,)
     queryset = Realtor.objects.filter(is_top_seller=True)
-    serializer_class =RealtorSerializer
+    serializer_class = RealtorSerializer
     pagination_class = None
     
