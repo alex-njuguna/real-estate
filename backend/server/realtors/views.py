@@ -11,3 +11,8 @@ class RealtorListView(ListAPIView):
     queryset = Realtor.objects.all()
     serializer_class = RealtorSerializer
     pagination_class = None
+
+class RealtorView(RetrieveAPIView):
+    """display a specif realtor"""
+    queryset = Realtor.objects.all()
+    serializer_class = RealtorSerializer
