@@ -14,3 +14,9 @@ class ListingsView(ListAPIView):
     queryset = Listing.objects.order_by('-list_date').filter(is_published=True)
     serializer_class = ListingsSerializer
     lookup_field = 'slug'
+
+class ListingDetailView(RetrieveAPIView):
+    """diplay a single listing"""
+    queryset = Listing.objects.order_by('-list_date').filter(is_published=True)
+    serializer_class = ListingSerializer
+    lookup_field = 'slug'
