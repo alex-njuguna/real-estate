@@ -1,3 +1,16 @@
-from django.shortcuts import render
+from rest_framework import permissions
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
+from datetime import timezone, datetime, timedelta
 
-# Create your views here.
+from .models import Listing
+from .serializers import ListingsSerializer, ListingSerializer
+
+
+class ListingsView(ListAPIView):
+    """display all listings"""
+    permission_classes = (permissions.AllowAny,)
+    queryset = Listing.objects.order_by('-list_date').filter(is_published=True)
+    serializer_class = ListingsSerializer
+    lookup_field = 'slug'
