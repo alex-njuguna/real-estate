@@ -8,4 +8,11 @@ class ListingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Listing
         fields = ['title', 'address', 'location', 'county', 'sale_type', 'house_type', 'main_photo', 'list_date', 'open_house']
-        
+
+
+class ListingSerializer(serializers.ModelSerializer):
+    """serializer for a single listing data"""
+    class Meta:
+        model = Listing
+        fields = '__all__'
+
