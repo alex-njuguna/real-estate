@@ -19,7 +19,7 @@ class Listing(models.Model):
 
     realtor = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=250)
+    slug = models.SlugField(max_length=250, blank=True, null=True)
     address = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
     county = models.CharField(max_length=100)
