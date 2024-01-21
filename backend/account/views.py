@@ -1,8 +1,8 @@
-from rest_framework import permissions
-from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import permissions
 from django.contrib.auth import get_user_model
-User = get_user_model
+User = get_user_model()
 
 
 class SignupView(APIView):
@@ -22,7 +22,7 @@ class SignupView(APIView):
             if User.objects.filter(email=email).exists():
                 return Response({'error': 'Email is already registered by another user'})
             else:
-                if len(password < 6):
+                if len(password) < 6:
                     return Response({'error': 'Password is too short.'})
                 else:
                     user = User.objects.create_user(
@@ -32,4 +32,4 @@ class SignupView(APIView):
                     return Response({'success': 'User created successfully'})
 
         else:
-            return Response({'error': 'Passwords do no  match'})
+            return Response({'error': 'Passwords do not match'})
