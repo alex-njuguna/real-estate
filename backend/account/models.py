@@ -1,8 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
+
 class UserAccountManager(BaseUserManager):
     """A class to manage creation of users"""
+
     def create_user(self, email, name, password=None):
         # create a normal user
         if not email:
@@ -24,6 +26,7 @@ class UserAccountManager(BaseUserManager):
         user.save()
 
         return user
+
 
 class UserAccount(AbstractBaseUser, PermissionsMixin):
     """custom User account details"""
