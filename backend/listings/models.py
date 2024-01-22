@@ -11,11 +11,13 @@ class Listing(models.Model):
         FOR_SALE = 'For Sale'
         FOR_RENT = 'For Rent'
 
-    class HomeType(models.TextChoices):
+    class PropertyType(models.TextChoices):
         # home option
         HOUSE = 'House'
         APARTMENT = 'Apartment'
         TOWNHOUSE = 'Townhouse'
+        LAND = 'Land'
+        OFFICE = 'Office'
 
     realtor = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=150)
@@ -31,8 +33,8 @@ class Listing(models.Model):
     price = models.IntegerField()
     bedrooms = models.IntegerField()
     bathrooms = models.DecimalField(max_digits=2, decimal_places=1)
-    home_type = models.CharField(
-        max_length=50, choices=HomeType.choices, default=HomeType.HOUSE)
+    property_type = models.CharField(
+        max_length=50, choices=PropertyType.choices, default=PropertyType.HOUSE)
     size = models.IntegerField()
     open_house = models.BooleanField(default=False)
     photo_main = models.ImageField(upload_to='photos/%Y/%m/%d')

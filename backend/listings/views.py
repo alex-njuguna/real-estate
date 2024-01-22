@@ -76,8 +76,8 @@ class SearchView(APIView):
 
         queryset = queryset.filter(bedrooms__gte=bedrooms)
 
-        home_type = data['home_type']
-        queryset = queryset.filter(home_type__iexact=home_type)
+        property_type = data['property_type']
+        queryset = queryset.filter(property_type__iexact=property_type)
 
         bathrooms = data['bathrooms']
         if bathrooms == '0+':
