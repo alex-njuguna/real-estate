@@ -17,8 +17,8 @@ class Listing(models.Model):
         TOWNHOUSE = 'Townhouse'
 
     realtor = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING)
-    slug = models.CharField(max_length=200, unique=True)
     title = models.CharField(max_length=150)
+    slug = models.SlugField(unique=True)
     address = models.CharField(max_length=150)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
@@ -57,5 +57,10 @@ class Listing(models.Model):
     is_published = models.BooleanField(default=True)
     list_date = models.DateTimeField(default=now, blank=True)
 
+    def save(self, *args, **kwargs):
+        # generate a slugfield
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return self.name
+        return self.title
