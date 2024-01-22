@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
 from realtors.models import Realtor
+from autoslug import AutoSlugField
 
 
 class Listing(models.Model):
@@ -18,7 +19,8 @@ class Listing(models.Model):
 
     realtor = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=150)
-    slug = models.SlugField(unique=True)
+    slug = AutoSlugField(populate_from='title',
+                         editable=True, always_update=True, blank=True)
     address = models.CharField(max_length=150)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
@@ -31,7 +33,7 @@ class Listing(models.Model):
     bathrooms = models.DecimalField(max_digits=2, decimal_places=1)
     home_type = models.CharField(
         max_length=50, choices=HomeType.choices, default=HomeType.HOUSE)
-    sqft = models.IntegerField()
+    size = models.IntegerField()
     open_house = models.BooleanField(default=False)
     photo_main = models.ImageField(upload_to='photos/%Y/%m/%d')
     photo_1 = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True)
@@ -56,11 +58,6 @@ class Listing(models.Model):
     photo_20 = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True)
     is_published = models.BooleanField(default=True)
     list_date = models.DateTimeField(default=now, blank=True)
-
-    def save(self, *args, **kwargs):
-        # generate a slugfield
-        self.slug = slugify(self.title)
-        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

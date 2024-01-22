@@ -93,20 +93,20 @@ class SearchView(APIView):
 
         queryset = queryset.filter(bathrooms__gte=bathrooms)
 
-        sqft = data['sqft']
-        if sqft == '1000+':
-            sqft = 1000
-        elif sqft == '1200+':
-            sqft = 1200
-        elif sqft == '1500+':
-            sqft = 1500
-        elif sqft == '2000+':
-            sqft = 2000
-        elif sqft == 'Any':
-            sqft = 0
+        size = data['size']
+        if size == '1000+':
+            size = 1000
+        elif size == '1200+':
+            size = 1200
+        elif size == '1500+':
+            size = 1500
+        elif size == '2000+':
+            size = 2000
+        elif size == 'Any':
+            size = 0
 
-        if sqft != 0:
-            queryset = queryset.filter(sqft__gte=sqft)
+        if size != 0:
+            queryset = queryset.filter(size__gte=size)
 
         days_passed = data['days_listed']
         if days_passed == '1 or less':
