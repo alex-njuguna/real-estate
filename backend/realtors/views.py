@@ -1,3 +1,13 @@
-from django.shortcuts import render
+from rest_framework import permissions
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 
-# Create your views here.
+from .models import Realtor
+from .serializers import RealtorSerializer
+
+
+class RealtorListView(ListAPIView):
+    # display all realtors
+    permission_classes = (permissions.AllowAny,)
+    queryset = Realtor.objects.all()
+    serializer_class = RealtorSerializer
+    pagination_class = None
