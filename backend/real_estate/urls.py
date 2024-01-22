@@ -14,6 +14,7 @@ urlpatterns = [
 
     path('api/accounts/', include('account.urls')),
     path('api/realtors/', include('realtors.urls')),
+    path('api/listings/', include('listings.urls')),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

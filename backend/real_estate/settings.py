@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     # apps
     'account',
     'realtors',
+    'listings',
 ]
 
 MIDDLEWARE = [
