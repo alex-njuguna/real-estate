@@ -11,25 +11,30 @@ import {
 } from "./containers/Containers";
 import { NotFound } from "./components/Components";
 
+import { Provider } from "react-redux";
+import store from "./Store";
+
 import "./sass/main.scss";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="about/" element={<About />} />
-            <Route path="contact/" element={<Contact />} />
-            <Route path="listings/" element={<Listings />} />
-            <Route path="listings/:id" element={<ListingDetail />} />
-            <Route path="signin/" element={<Signin />} />
-            <Route path="signup/" element={<Signup />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Layout>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="about/" element={<About />} />
+              <Route path="contact/" element={<Contact />} />
+              <Route path="listings/" element={<Listings />} />
+              <Route path="listings/:id" element={<ListingDetail />} />
+              <Route path="signin/" element={<Signin />} />
+              <Route path="signup/" element={<Signup />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Layout>
+        </BrowserRouter>
+      </Provider>
     </>
   );
 }
