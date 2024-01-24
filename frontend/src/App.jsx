@@ -9,6 +9,9 @@ import {
   Signin,
   Signup,
 } from "./containers/Containers";
+import { NotFound } from "./components/Components";
+
+import "./sass/main.scss";
 
 function App() {
   return (
@@ -23,6 +26,7 @@ function App() {
             <Route path="listings/:id" element={<ListingDetail />} />
             <Route path="signin/" element={<Signin />} />
             <Route path="signup/" element={<Signup />} />
+            <Route Component={NotFound} />
           </Routes>
         </Layout>
       </BrowserRouter>
