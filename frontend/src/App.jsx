@@ -26,7 +26,7 @@ function App() {
             <Route path="listings/:id" element={<ListingDetail />} />
             <Route path="signin/" element={<Signin />} />
             <Route path="signup/" element={<Signup />} />
-            <Route Component={NotFound} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
       </BrowserRouter>
