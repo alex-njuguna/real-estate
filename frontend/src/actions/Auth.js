@@ -71,3 +71,8 @@ export const signup =
       dispatch(setAlert("Error Creating account", "error"));
     }
   };
+
+export const logout = () => (dispatch) => {
+  dispatch(setAlert("Logout successful", "success"));
+  dispatch({ type: LOGOUT });
+};
